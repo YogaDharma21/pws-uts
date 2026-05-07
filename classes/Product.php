@@ -52,21 +52,7 @@ class Product extends Database
         $stmt->execute();
         return $stmt->get_result();
     }
-
-    public function getTotalProducts()
-    {
-        $qry = "SELECT COUNT(*) as total FROM $this->table";
-        $result = $this->conn->query($qry);
-        return $result->fetch_assoc()['total'];
-    }
-
-    public function getTotalStockValue()
-    {
-        $qry = "SELECT SUM(stok * harga) as total FROM $this->table";
-        $result = $this->conn->query($qry);
-        return $result->fetch_assoc()['total'];
-    }
-
+    
     public function reduceStock($id, $qty)
     {
         $qry = "UPDATE $this->table SET stok = stok - ? WHERE id = ? AND stok >= ?";
